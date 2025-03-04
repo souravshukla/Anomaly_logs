@@ -1,0 +1,9 @@
+{
+	"name": "AnomalyLogsExp",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "d266b1d4-961b-4af5-bfde-31cc597660c0",
+		"tenantId": "4fe28f5a-326d-4677-aa65-b5a571db600e"
+	}
+}
