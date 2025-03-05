@@ -10,9 +10,9 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "ACCESS_HISTORY.csv",
-				"folderPath": "ACCOUNT_USAGE",
-				"fileSystem": "snowflake"
+				"fileName": "sample_data.csv",
+				"folderPath": "inventory",
+				"fileSystem": "thanish"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
