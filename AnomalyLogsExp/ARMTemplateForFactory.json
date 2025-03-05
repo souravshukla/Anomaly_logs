@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'Snowflake1'"
 		},
+		"Snowflake2_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Snowflake2'"
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://anomalyadls.dfs.core.windows.net/"
@@ -34,6 +38,18 @@
 		"AzureBlobStorage1_sasUri": {
 			"type": "secureString",
 			"metadata": "Secure string for 'sasUri' of 'AzureBlobStorage1'"
+		},
+		"Snowflake2_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "DEV_DB"
+		},
+		"Snowflake2_properties_typeProperties_role": {
+			"type": "string",
+			"defaultValue": "ACCOUNTADMIN"
+		},
+		"Snowflake2_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "hsa75448.east-us-2.azure.snowflakecomputing.com"
 		}
 	},
 	"variables": {
@@ -94,14 +110,15 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileName": "ACCESS_HISTORY.csv",
-						"folderPath": "ACCOUNT_USAGE",
-						"fileSystem": "snowflake"
+						"fileName": "sample_data.csv",
+						"folderPath": "inventory",
+						"fileSystem": "thanish"
 					},
 					"columnDelimiter": ",",
+					"rowDelimiter": "\r",
 					"escapeChar": "\\",
 					"firstRowAsHeader": true,
-					"quoteChar": "\""
+					"quoteChar": ""
 				},
 				"schema": []
 			},
@@ -256,6 +273,364 @@
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline1_copy1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "ExcelSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								}
+							},
+							"sink": {
+								"type": "SnowflakeV2Sink",
+								"importSettings": {
+									"type": "SnowflakeImportCopyCommand"
+								}
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "AzureBlobStorage1",
+									"type": "LinkedServiceReference"
+								},
+								"path": "snowflake"
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Excel1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SnowflakeTable2",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/Excel1')]",
+				"[concat(variables('factoryId'), '/datasets/SnowflakeTable2')]",
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Snowflake2')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "SnowflakeV2",
+				"typeProperties": {
+					"authenticationType": "Basic",
+					"accountIdentifier": "hsa75448.east-us-2.azure",
+					"user": "ssnikhil12",
+					"database": "[parameters('Snowflake2_properties_typeProperties_database')]",
+					"warehouse": "COMPUTE_WH",
+					"role": "[parameters('Snowflake2_properties_typeProperties_role')]",
+					"host": "[parameters('Snowflake2_properties_typeProperties_host')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('Snowflake2_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SnowflakeTable2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Snowflake2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SnowflakeV2Table",
+				"schema": [
+					{
+						"name": "TM_FISCAL_YEAR",
+						"type": "VARCHAR"
+					},
+					{
+						"name": "MONTH_NAME",
+						"type": "VARCHAR"
+					},
+					{
+						"name": "MONTH",
+						"type": "VARCHAR"
+					},
+					{
+						"name": "PARTNER_TYPE",
+						"type": "VARCHAR"
+					},
+					{
+						"name": "DEALER",
+						"type": "VARCHAR"
+					},
+					{
+						"name": "DEALER_CODE",
+						"type": "VARCHAR"
+					},
+					{
+						"name": "DIVISION",
+						"type": "VARCHAR"
+					},
+					{
+						"name": "REGION",
+						"type": "VARCHAR"
+					},
+					{
+						"name": "JC #",
+						"type": "VARCHAR"
+					},
+					{
+						"name": "JOB_CARD_CREATED_DATE",
+						"type": "VARCHAR"
+					},
+					{
+						"name": "JC_OPEN_DAYS",
+						"type": "VARCHAR"
+					},
+					{
+						"name": "JOB_CARD_CLOSED_DATE",
+						"type": "VARCHAR"
+					},
+					{
+						"name": "SERVICE_TYPE",
+						"type": "VARCHAR"
+					},
+					{
+						"name": "KMS_RUN",
+						"type": "VARCHAR"
+					},
+					{
+						"name": "PART_NO",
+						"type": "VARCHAR"
+					},
+					{
+						"name": "PART_DESC",
+						"type": "VARCHAR"
+					},
+					{
+						"name": "CATEGORY",
+						"type": "VARCHAR"
+					},
+					{
+						"name": "TM_PART_INDICATOR",
+						"type": "VARCHAR"
+					},
+					{
+						"name": "SOLD_QTY",
+						"type": "VARCHAR"
+					},
+					{
+						"name": "TM_SPARES_AMOUNT",
+						"type": "VARCHAR"
+					},
+					{
+						"name": "SPARES_AMOUNT",
+						"type": "VARCHAR"
+					},
+					{
+						"name": "PPL",
+						"type": "VARCHAR"
+					},
+					{
+						"name": "PL",
+						"type": "VARCHAR"
+					},
+					{
+						"name": "LOB",
+						"type": "VARCHAR"
+					},
+					{
+						"name": "INVOICE_STATUS",
+						"type": "VARCHAR"
+					},
+					{
+						"name": "INVOICE_NUMBER",
+						"type": "VARCHAR"
+					},
+					{
+						"name": "INVOICE_DATE",
+						"type": "VARCHAR"
+					}
+				],
+				"typeProperties": {
+					"schema": "SDL_RAW",
+					"table": "SDL_INVENTORY_TRANSACTION"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Snowflake2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Excel1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "Sheet1",
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "Sample_data.xlsx",
+						"folderPath": "inventory",
+						"fileSystem": "thanish"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "TM Fiscal Year",
+						"type": "String"
+					},
+					{
+						"name": "Month Name",
+						"type": "String"
+					},
+					{
+						"name": "Month",
+						"type": "String"
+					},
+					{
+						"name": "Partner Type",
+						"type": "String"
+					},
+					{
+						"name": "Dealer",
+						"type": "String"
+					},
+					{
+						"name": "Dealer Code",
+						"type": "String"
+					},
+					{
+						"name": "Division",
+						"type": "String"
+					},
+					{
+						"name": "Region",
+						"type": "String"
+					},
+					{
+						"name": "JC #",
+						"type": "String"
+					},
+					{
+						"name": "Job Card Created Date",
+						"type": "String"
+					},
+					{
+						"name": "JC Open Days",
+						"type": "String"
+					},
+					{
+						"name": "Job Card Closed Date",
+						"type": "String"
+					},
+					{
+						"name": "Service Type",
+						"type": "String"
+					},
+					{
+						"name": "KMs Run",
+						"type": "String"
+					},
+					{
+						"name": "Part No",
+						"type": "String"
+					},
+					{
+						"name": "Part Desc",
+						"type": "String"
+					},
+					{
+						"name": "Category",
+						"type": "String"
+					},
+					{
+						"name": "TM Part Indicator",
+						"type": "String"
+					},
+					{
+						"name": "Sold Qty",
+						"type": "String"
+					},
+					{
+						"name": "TM Spares Amount",
+						"type": "String"
+					},
+					{
+						"name": "Spares Amount",
+						"type": "String"
+					},
+					{
+						"name": "PPL",
+						"type": "String"
+					},
+					{
+						"name": "PL",
+						"type": "String"
+					},
+					{
+						"name": "LOB",
+						"type": "String"
+					},
+					{
+						"name": "Invoice Status",
+						"type": "String"
+					},
+					{
+						"name": "Invoice Number",
+						"type": "String"
+					},
+					{
+						"name": "Invoice Date",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
+			]
 		}
 	]
 }

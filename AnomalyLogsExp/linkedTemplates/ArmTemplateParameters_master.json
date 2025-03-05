@@ -11,6 +11,9 @@
 		"Snowflake1_password": {
 			"value": ""
 		},
+		"Snowflake2_password": {
+			"value": ""
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://anomalyadls.dfs.core.windows.net/"
 		},
@@ -25,6 +28,15 @@
 		},
 		"AzureBlobStorage1_sasUri": {
 			"value": ""
+		},
+		"Snowflake2_properties_typeProperties_database": {
+			"value": "DEV_DB"
+		},
+		"Snowflake2_properties_typeProperties_role": {
+			"value": "ACCOUNTADMIN"
+		},
+		"Snowflake2_properties_typeProperties_host": {
+			"value": "hsa75448.east-us-2.azure.snowflakecomputing.com"
 		},
 		"containerUri": {
 			"value": ""

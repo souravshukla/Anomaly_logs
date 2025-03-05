@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'Snowflake1'"
 		},
+		"Snowflake2_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Snowflake2'"
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://anomalyadls.dfs.core.windows.net/"
@@ -34,6 +38,18 @@
 		"AzureBlobStorage1_sasUri": {
 			"type": "secureString",
 			"metadata": "Secure string for 'sasUri' of 'AzureBlobStorage1'"
+		},
+		"Snowflake2_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "DEV_DB"
+		},
+		"Snowflake2_properties_typeProperties_role": {
+			"type": "string",
+			"defaultValue": "ACCOUNTADMIN"
+		},
+		"Snowflake2_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "hsa75448.east-us-2.azure.snowflakecomputing.com"
 		},
 		"containerUri": {
 			"type": "string",
@@ -68,6 +84,9 @@
 					"Snowflake1_password": {
 						"value": "[parameters('Snowflake1_password')]"
 					},
+					"Snowflake2_password": {
+						"value": "[parameters('Snowflake2_password')]"
+					},
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
 					},
@@ -82,6 +101,15 @@
 					},
 					"AzureBlobStorage1_sasUri": {
 						"value": "[parameters('AzureBlobStorage1_sasUri')]"
+					},
+					"Snowflake2_properties_typeProperties_database": {
+						"value": "[parameters('Snowflake2_properties_typeProperties_database')]"
+					},
+					"Snowflake2_properties_typeProperties_role": {
+						"value": "[parameters('Snowflake2_properties_typeProperties_role')]"
+					},
+					"Snowflake2_properties_typeProperties_host": {
+						"value": "[parameters('Snowflake2_properties_typeProperties_host')]"
 					}
 				}
 			},
