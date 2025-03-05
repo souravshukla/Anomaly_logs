@@ -33,7 +33,14 @@
 							"fileExtension": ".csv"
 						}
 					},
-					"enableStaging": false
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "AzureDataLakeStorage1",
+							"type": "LinkedServiceReference"
+						},
+						"path": "snowflake"
+					}
 				},
 				"inputs": [
 					{
