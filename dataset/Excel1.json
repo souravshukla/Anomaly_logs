@@ -1,0 +1,131 @@
+{
+	"name": "Excel1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Sheet1",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Sample_data.xlsx",
+				"folderPath": "inventory",
+				"fileSystem": "thanish"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "TM Fiscal Year",
+				"type": "String"
+			},
+			{
+				"name": "Month Name",
+				"type": "String"
+			},
+			{
+				"name": "Month",
+				"type": "String"
+			},
+			{
+				"name": "Partner Type",
+				"type": "String"
+			},
+			{
+				"name": "Dealer",
+				"type": "String"
+			},
+			{
+				"name": "Dealer Code",
+				"type": "String"
+			},
+			{
+				"name": "Division",
+				"type": "String"
+			},
+			{
+				"name": "Region",
+				"type": "String"
+			},
+			{
+				"name": "JC #",
+				"type": "String"
+			},
+			{
+				"name": "Job Card Created Date",
+				"type": "String"
+			},
+			{
+				"name": "JC Open Days",
+				"type": "String"
+			},
+			{
+				"name": "Job Card Closed Date",
+				"type": "String"
+			},
+			{
+				"name": "Service Type",
+				"type": "String"
+			},
+			{
+				"name": "KMs Run",
+				"type": "String"
+			},
+			{
+				"name": "Part No",
+				"type": "String"
+			},
+			{
+				"name": "Part Desc",
+				"type": "String"
+			},
+			{
+				"name": "Category",
+				"type": "String"
+			},
+			{
+				"name": "TM Part Indicator",
+				"type": "String"
+			},
+			{
+				"name": "Sold Qty",
+				"type": "String"
+			},
+			{
+				"name": "TM Spares Amount",
+				"type": "String"
+			},
+			{
+				"name": "Spares Amount",
+				"type": "String"
+			},
+			{
+				"name": "PPL",
+				"type": "String"
+			},
+			{
+				"name": "PL",
+				"type": "String"
+			},
+			{
+				"name": "LOB",
+				"type": "String"
+			},
+			{
+				"name": "Invoice Status",
+				"type": "String"
+			},
+			{
+				"name": "Invoice Number",
+				"type": "String"
+			},
+			{
+				"name": "Invoice Date",
+				"type": "String"
+			}
+		]
+	}
+}
