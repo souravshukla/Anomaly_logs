@@ -1,0 +1,57 @@
+{
+	"name": "SnowflakeTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Snowflake1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SnowflakeV2Table",
+		"schema": [
+			{
+				"name": "QUERY_ID",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "QUERY_START_TIME",
+				"type": "TIMESTAMP_LTZ"
+			},
+			{
+				"name": "USER_NAME",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "DIRECT_OBJECTS_ACCESSED",
+				"type": "ARRAY"
+			},
+			{
+				"name": "BASE_OBJECTS_ACCESSED",
+				"type": "ARRAY"
+			},
+			{
+				"name": "OBJECTS_MODIFIED",
+				"type": "ARRAY"
+			},
+			{
+				"name": "OBJECT_MODIFIED_BY_DDL",
+				"type": "OBJECT"
+			},
+			{
+				"name": "POLICIES_REFERENCED",
+				"type": "ARRAY"
+			},
+			{
+				"name": "PARENT_QUERY_ID",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "ROOT_QUERY_ID",
+				"type": "VARCHAR"
+			}
+		],
+		"typeProperties": {
+			"schema": "ACCOUNT_USAGE",
+			"table": "ACCESS_HISTORY"
+		}
+	}
+}
