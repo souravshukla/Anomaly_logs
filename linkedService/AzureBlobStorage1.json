@@ -5,8 +5,8 @@
 		"annotations": [],
 		"type": "AzureBlobStorage",
 		"typeProperties": {
-			"sasUri": "https://anomalyadls.blob.core.windows.net/snowflake/",
-			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDBDQTBCQjRCLTNGMUUtNDI0My04QjZDLTEzQjEwNzEyNkRENl9mNTQ4NmU0Zi0xOGYzLTQyYmMtYmQzNy1iZGI3YjhmYmYzYjgiDQp9"
+			"sasUri": "https://anomalylogsadls.blob.core.windows.net/snowflake",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDk4NEMzNDI2LTg4RDMtNDg2RC1CQzZGLTBCMkE5ODU0NTM1OF80MTZiN2Y1Ni0zMmExLTRjODYtOTRlMi02NzAyZWNkZTM5MGUiDQp9"
 		}
 	}
 }
