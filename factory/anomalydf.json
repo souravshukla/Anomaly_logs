@@ -1,0 +1,9 @@
+{
+	"name": "anomalydf",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "9e80d4bb-0f53-4e8e-8bb1-0ff900c74a10",
+		"tenantId": "ba91021f-c9f5-45d8-8954-dd25da48e3fc"
+	}
+}
