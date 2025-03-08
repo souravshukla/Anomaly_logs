@@ -16,11 +16,14 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "ExcelSource",
+						"type": "DelimitedTextSource",
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
 							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
 						}
 					},
 					"sink": {
@@ -36,11 +39,166 @@
 							"type": "LinkedServiceReference"
 						},
 						"path": "snowflake"
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "ID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ID",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "Name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "NAME",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Sex",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SEX",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Age",
+									"type": "String"
+								},
+								"sink": {
+									"name": "AGE",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "Height",
+									"type": "String"
+								},
+								"sink": {
+									"name": "HEIGHT",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "Weight",
+									"type": "String"
+								},
+								"sink": {
+									"name": "WEIGHT",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "Team",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TEAM",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "NOC",
+									"type": "String"
+								},
+								"sink": {
+									"name": "NOC",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Games",
+									"type": "String"
+								},
+								"sink": {
+									"name": "GAMES",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Year",
+									"type": "String"
+								},
+								"sink": {
+									"name": "YEAR",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "Season",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SEASON",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "City",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CITY",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Sport",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SPORT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Event",
+									"type": "String"
+								},
+								"sink": {
+									"name": "EVENT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Medal",
+									"type": "String"
+								},
+								"sink": {
+									"name": "MEDAL",
+									"type": "String"
+								}
+							}
+						]
 					}
 				},
 				"inputs": [
 					{
-						"referenceName": "Excel1",
+						"referenceName": "DelimitedText1",
 						"type": "DatasetReference"
 					}
 				],
