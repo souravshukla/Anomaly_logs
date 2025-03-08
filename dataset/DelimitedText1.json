@@ -16,7 +16,7 @@
 			},
 			"columnDelimiter": ",",
 			"escapeChar": {
-				"value": "#",
+				"value": "`",
 				"type": "Expression"
 			},
 			"firstRowAsHeader": true,
