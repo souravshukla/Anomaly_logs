@@ -118,8 +118,8 @@
 			}
 		],
 		"typeProperties": {
-			"schema": "SDL_RAW",
-			"table": "SDL_INVENTORY_TRANSACTION"
+			"schema": "MYZONE",
+			"table": "ATHLETES"
 		}
 	}
 }
