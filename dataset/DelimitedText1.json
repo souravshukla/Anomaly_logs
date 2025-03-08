@@ -10,15 +10,14 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "sample_data.csv",
-				"folderPath": "inventory",
-				"fileSystem": "thanish"
+				"fileName": "athlete_events.csv",
+				"folderPath": "snowpark",
+				"fileSystem": "snowflake"
 			},
 			"columnDelimiter": ",",
-			"rowDelimiter": "\r",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
-			"quoteChar": ""
+			"quoteChar": "\""
 		},
 		"schema": []
 	}
