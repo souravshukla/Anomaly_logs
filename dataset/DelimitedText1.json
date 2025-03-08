@@ -15,7 +15,10 @@
 				"fileSystem": "snowflake"
 			},
 			"columnDelimiter": ",",
-			"escapeChar": "",
+			"escapeChar": {
+				"value": "~",
+				"type": "Expression"
+			},
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
