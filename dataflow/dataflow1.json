@@ -34,8 +34,8 @@
 				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> source1",
-				"source1 select(skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select1",
+				"source1 select(skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> select1",
 				"select1 sink(allowSchemaDrift: false,",
 				"     validateSchema: false,",
 				"     input(",
@@ -75,7 +75,8 @@
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     stageInsert: true) ~> sink1"
+				"     stageInsert: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
 			]
 		}
 	}
