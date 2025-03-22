@@ -50,8 +50,8 @@
 			}
 		],
 		"typeProperties": {
-			"schema": "ACCOUNT_USAGE",
-			"table": "ACCESS_HISTORY"
+			"schema": "MYZONE",
+			"table": "EMP_AGG"
 		}
 	}
 }
