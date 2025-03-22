@@ -64,7 +64,10 @@
 				"     upsertable:false,",
 				"     truncate:true,",
 				"     format: 'table',",
-				"     stageInsert: true) ~> sink1"
+				"     stageInsert: true,",
+				"     mapColumn(",
+				"          {} = DEPARTMENT",
+				"     )) ~> sink1"
 			]
 		}
 	}
