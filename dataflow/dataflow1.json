@@ -3,35 +3,11 @@
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
-			"sources": [
-				{
-					"dataset": {
-						"referenceName": "DelimitedText1",
-						"type": "DatasetReference"
-					},
-					"name": "source1"
-				}
-			],
+			"sources": [],
 			"sinks": [],
-			"transformations": [
-				{
-					"name": "aggregate1"
-				}
-			],
+			"transformations": [],
 			"scriptLines": [
-				"source(output(",
-				"          EMPLOYEE_ID as short,",
-				"          FIRST_NAME as string,",
-				"          LAST_NAME as string,",
-				"          DEPARTMENT as string,",
-				"          HIRE_DATE as date,",
-				"          SALARY as double",
-				"     ),",
-				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> source1",
-				"source1 aggregate(groupBy(DEPARTMENT),",
-				"     SALARY = sum(SALARY)) ~> aggregate1"
+				""
 			]
 		}
 	}
