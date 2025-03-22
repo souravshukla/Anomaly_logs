@@ -14,15 +14,7 @@
 			],
 			"sinks": [
 				{
-					"dataset": {
-						"referenceName": "SnowflakeTable1",
-						"type": "DatasetReference"
-					},
-					"name": "sink1",
-					"rejectedDataLinkedService": {
-						"referenceName": "AzureDataLakeStorage1",
-						"type": "LinkedServiceReference"
-					}
+					"name": "sink1"
 				}
 			],
 			"transformations": [
@@ -46,27 +38,11 @@
 				"     SALARY = sum(SALARY)) ~> aggregate1",
 				"aggregate1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     input(",
-				"          QUERY_ID as string,",
-				"          QUERY_START_TIME as timestamp,",
-				"          USER_NAME as string,",
-				"          DIRECT_OBJECTS_ACCESSED as any[],",
-				"          BASE_OBJECTS_ACCESSED as any[],",
-				"          OBJECTS_MODIFIED as any[],",
-				"          OBJECT_MODIFIED_BY_DDL as any,",
-				"          POLICIES_REFERENCED as any[],",
-				"          PARENT_QUERY_ID as string,",
-				"          ROOT_QUERY_ID as string",
-				"     ),",
-				"     deletable:false,",
-				"     insertable:true,",
-				"     updateable:false,",
-				"     upsertable:false,",
-				"     truncate:true,",
-				"     format: 'table',",
-				"     stageInsert: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
 				"     mapColumn(",
-				"          {} = DEPARTMENT",
+				"          DEPARTMENT,",
+				"          SALARY",
 				"     )) ~> sink1"
 			]
 		}
