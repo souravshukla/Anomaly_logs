@@ -81,7 +81,11 @@
 				"     upsertable:false,",
 				"     format: 'table',",
 				"     saveOrder: 1,",
-				"     stageInsert: true) ~> sink1"
+				"     stageInsert: true,",
+				"     mapColumn(",
+				"          {} = DEPARTMENT,",
+				"          SALARY",
+				"     )) ~> sink1"
 			]
 		}
 	}
