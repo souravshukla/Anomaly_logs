@@ -14,11 +14,11 @@
 			],
 			"sinks": [
 				{
-					"dataset": {
-						"referenceName": "SnowflakeTable2_copy1",
-						"type": "DatasetReference"
-					},
-					"name": "sink1"
+					"name": "sink1",
+					"rejectedDataLinkedService": {
+						"referenceName": "AzureBlobStorage1",
+						"type": "LinkedServiceReference"
+					}
 				}
 			],
 			"transformations": [
@@ -42,46 +42,15 @@
 				"     SALARY = sum(SALARY)) ~> aggregate1",
 				"aggregate1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     input(",
-				"          TM_FISCAL_YEAR as string,",
-				"          MONTH_NAME as string,",
-				"          MONTH as string,",
-				"          PARTNER_TYPE as string,",
-				"          DEALER as string,",
-				"          DEALER_CODE as string,",
-				"          DIVISION as string,",
-				"          REGION as string,",
-				"          {JC #} as string,",
-				"          JOB_CARD_CREATED_DATE as string,",
-				"          JC_OPEN_DAYS as string,",
-				"          JOB_CARD_CLOSED_DATE as string,",
-				"          SERVICE_TYPE as string,",
-				"          KMS_RUN as string,",
-				"          PART_NO as string,",
-				"          PART_DESC as string,",
-				"          CATEGORY as string,",
-				"          TM_PART_INDICATOR as string,",
-				"          SOLD_QTY as string,",
-				"          TM_SPARES_AMOUNT as string,",
-				"          SPARES_AMOUNT as string,",
-				"          PPL as string,",
-				"          PL as string,",
-				"          LOB as string,",
-				"          INVOICE_STATUS as string,",
-				"          INVOICE_NUMBER as string,",
-				"          INVOICE_DATE as string",
-				"     ),",
-				"     deletable:false,",
-				"     insertable:true,",
-				"     updateable:false,",
-				"     upsertable:false,",
-				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     stageInsert: true,",
+				"     store: 'cache',",
+				"     format: 'inline',",
+				"     output: false,",
+				"     saveOrder: 1,",
 				"     mapColumn(",
 				"          DEPARTMENT,",
-				"          SALARY",
+				"          TOTAL_SALARY = SALARY",
 				"     )) ~> sink1"
 			]
 		}
