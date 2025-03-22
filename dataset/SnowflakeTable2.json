@@ -119,7 +119,7 @@
 		],
 		"typeProperties": {
 			"schema": "MYZONE",
-			"table": "employees"
+			"table": "EMPLOYEES"
 		}
 	}
 }
