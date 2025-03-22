@@ -12,19 +12,7 @@
 					"name": "source1"
 				}
 			],
-			"sinks": [
-				{
-					"dataset": {
-						"referenceName": "SnowflakeTable2_copy1",
-						"type": "DatasetReference"
-					},
-					"name": "sink1",
-					"rejectedDataLinkedService": {
-						"referenceName": "AzureBlobStorage1",
-						"type": "LinkedServiceReference"
-					}
-				}
-			],
+			"sinks": [],
 			"transformations": [
 				{
 					"name": "aggregate1"
@@ -43,24 +31,7 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> source1",
 				"source1 aggregate(groupBy(DEPARTMENT),",
-				"     SALARY = sum(SALARY)) ~> aggregate1",
-				"aggregate1 sink(allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     input(",
-				"          DEPARTMENT as string,",
-				"          TOTAL_SALARY as double",
-				"     ),",
-				"     deletable:false,",
-				"     insertable:true,",
-				"     updateable:false,",
-				"     upsertable:false,",
-				"     format: 'table',",
-				"     saveOrder: 1,",
-				"     stageInsert: true,",
-				"     mapColumn(",
-				"          {} = DEPARTMENT,",
-				"          SALARY",
-				"     )) ~> sink1"
+				"     SALARY = sum(SALARY)) ~> aggregate1"
 			]
 		}
 	}
